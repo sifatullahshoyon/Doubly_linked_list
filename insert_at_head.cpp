@@ -27,9 +27,15 @@ void print_forward(Node* head)
     cout << endl;
 }
 // insert at head 
-void insert_at_head(Node* &head, int val)
+void insert_at_head(Node* &head, Node* &tail, int val)
 {
     Node* newNode = new Node(val);
+    if(head == NULL)
+    {
+        head = newNode;
+        tail = newNode;
+        return;
+    }
     newNode->next = head;
     head->prev = newNode;
     head = newNode;
@@ -38,16 +44,16 @@ void insert_at_head(Node* &head, int val)
 int main(){
     Node* head = new Node(10);
     Node* a = new Node(20);
-    Node* b = new Node(30);
+    Node* tail = new Node(30);
     // Connection
     head->next = a;
     a->prev = head;
 
-    a->next = b;
-    b->prev = a;
+    a->next = tail;
+    tail->prev = a;
 
-    insert_at_head(head, 100);
-    insert_at_head(head, 350);
+    insert_at_head(head, tail, 100);
+    insert_at_head(head, tail, 350);
     // print
     print_forward(head);
 
